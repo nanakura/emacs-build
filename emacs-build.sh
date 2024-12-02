@@ -370,17 +370,17 @@ function action5_package_all ()
 
 function feature_list () {
     cat <<EOF
+harfbuzz mingw-harfbuzz
+tiff mingw-libtiff
 cairo mingw-cairo
 gif mingw-giflib
 gnutls mingw-gnutls
-harfbuzz mingw-harfbuzz
 jpeg mingw-libjpeg-turbo
 json mingw-jansson
 lcms2 mingw-lcms2
 native-compilation mingw-libgccjit
 png mingw-libpng
 rsvg mingw-librsvg
-tiff mingw-libtiff
 tree-sitter mingw-tree-sitter
 xml2 mingw-libxml2
 xpm mingw-xpm-nox

@@ -106,6 +106,13 @@ jobs:
         if: runner.os != 'Windows'
         run: sudo .github/scripts/install-libs.sh
 
+      - name: (Hack) Install mingw libtree-sitter
+        if: ${{ matrix.msystem }} == 'UCRT64'
+        shell: msys2 {0}
+        run: |
+          curl -LO https://repo.msys2.org/mingw/ucrt64/mingw-w64-ucrt-x86_64-tree-sitter-0.24.3-2-any.pkg.tar.zst
+          pacman -U --noconfirm mingw-w64-ucrt-x86_64-tree-sitter-0.24.3-2-any.pkg.tar.zst
+
       - name: Build Emacs
         if: runner.os == 'Windows'
         # Require --with-* flags, else the deps will not be included properly

@@ -87,7 +87,7 @@ jobs:
       # This is the shortest job, but in this case it pulls all MSYS/MINGW64
       - name: Clone Emacs
         if: runner.os == 'Windows'
-        run: .\emacs-build.cmd --clone --repo https://github.com/emacs-mirror/emacs.git --branch ${{ needs.prepare_env.outputs.commit }}
+        run: .\emacs-build.cmd --clone --repo https://github.com/emacs-mirror/emacs.git --branch scratch/igc
 
       - name: Clone Emacs
         if: runner.os != 'Windows'
@@ -95,7 +95,7 @@ jobs:
           mkdir -p ./git/emacs
           cd ./git/emacs/
           git clone --filter=tree:0 --no-checkout $EMACS_REPO .
-          git checkout ${{ needs.prepare_env.outputs.commit }}
+          git checkout scratch/igc
 
       - name: Install deps
         if: runner.os == 'Windows'
@@ -117,7 +117,7 @@ jobs:
         if: runner.os == 'Windows'
         # Require --with-* flags, else the deps will not be included properly
         run: |
-          .\emacs-build.cmd --slim --branch ${{ needs.prepare_env.outputs.commit }} --build ${{ matrix.build_options }}
+          .\emacs-build.cmd --slim --branch scratch/igc --build ${{ matrix.build_options }}
 
       - name: Install winget
         if: runner.os == 'Windows'
@@ -133,7 +133,7 @@ jobs:
         if: runner.os == 'Windows'
         run: |
           $env:MSIXHeroCLI = &where.exe MSIXHeroCLI
-          .\emacs-build.cmd --slim --branch ${{ needs.prepare_env.outputs.commit }} --msix --pack-all ${{ matrix.build_options }}
+          .\emacs-build.cmd --slim --branch scratch/igc --msix --pack-all ${{ matrix.build_options }}
 
       - name: Build and pack Emacs
         if: runner.os != 'Windows'

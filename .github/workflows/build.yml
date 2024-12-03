@@ -51,14 +51,14 @@ jobs:
           - os: windows-2022
             shell: powershell
             msystem: UCRT64
-            build_options: --with-rsvg --without-mps
+            build_options: --branch scratch/igc --with-rsvg --without-mps --with-tree-sitter=ifavailable
           - os: windows-2022
             shell: powershell
             msystem: UCRT64
-            build_options: --variant mps --with-rsvg --with-mps --no-strip --enable-build-details
+            build_options: --branch scratch/igc --variant mps --with-rsvg --with-mps --no-strip --enable-build-details --with-tree-sitter=ifavailable
           - os: ubuntu-22.04
             shell: bash
-            build_options: --with-rsvg --with-mps --without-xwidgets
+            build_options: --branch scratch/igc --with-rsvg --with-mps --without-xwidgets
 
     # The type of runner that the job will run on
     runs-on: ${{ matrix.os }}
